@@ -1,4 +1,4 @@
-import ProfileImage from '../components/ProfileImage'
+import ProfileImage from './ProfileImage'
 
 export default function Introduce () {
   return (
