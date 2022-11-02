@@ -1,5 +1,4 @@
 import Introduce from '../src/components/Introduce'
-import Menu from '../src/components/Navigation'
 
 export default function Home() {
   return (
