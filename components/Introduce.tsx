@@ -2,7 +2,7 @@ import ProfileImage from './ProfileImage'
 
 export default function Introduce () {
   return (
-    <div className='flex flex-row w-fit'>
+    <div className='flex flex-row w-fit mb-10'>
       <ProfileImage />
       <div className='flex flex-col justify-end items-start'>
         <h1 className='text-lg'>Soojeong Choi</h1>
