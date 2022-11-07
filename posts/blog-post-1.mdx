@@ -1,0 +1,38 @@
+---
+title: 'Blog Post 1'
+date: '2022-11-08T05:35:07.322Z'
+description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea deserunt ab maiores eligendi nemo, ipsa, pariatur blanditiis'
+tag: ["md", "gray-matter", "redux"]
+---
+
+import Meta from '../../../components/Meta'
+
+<Meta title='Hello' />
+
+## Redux의 3요소
+
+- Provider: 맨처음 프로젝트에 redux 를 적용시켜준다. store를 props으로 받아야한다.
+- useSelector: 함수를 인자로 받으며, redux store 의 상태를 사용할 수 있게 해준다. 무선연결!
+
+```js
+const number = useSelector((state) => state.number);
+```
+
+- useDispatch: dispatch 를 불러와 액션을 호출할 수 있게 한다.
+
+```js
+const dispatch = useDispatch();
+onClick={() => { dispatch({ type: 'PLUS' }) }} // type 은 대문자 const로 관리하자
+```
+
+#### Let's dive into more
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea deserunt ab maiores eligendi nemo, ipsa, pariatur blanditiis, ullam exercitationem beatae incidunt deleniti ut sit est accusantium dolorum temporibus ipsam quae.
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea deserunt ab maiores eligendi nemo, ipsa, pariatur blanditiis, ullam exercitationem beatae incidunt deleniti ut sit est accusantium dolorum temporibus ipsam quae.
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea deserunt ab maiores eligendi nemo, ipsa, pariatur blanditiis, ullam exercitationem beatae incidunt deleniti ut sit est accusantium dolorum temporibus ipsam quae.
+
+
+### 참고 자료
+- [react-redux](https://www.youtube.com/watch?v=yjuwpf7VH74) by 생활코딩 by Captain Pangyo
