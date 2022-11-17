@@ -1,31 +1,20 @@
 import { GetStaticProps } from 'next'
 import Introduce from '../components/Introduce'
-import Tag from '../components/tag'
+import Tags from '../components/Tags'
 import { getAllPosts } from './api/staticdata'
+import { iPostsType } from '../type/type'
+import PostInfos from '../components/PostInfos'
 
-export type PostType = {
-  title: string;
-  date?: string;
-  description?: string;
-  tag: string[];
-};
-
-
-type IndexProps = {
-  posts: PostType[];
-};
-
-export const Index = ({ posts }: IndexProps): JSX.Element => {
-  const flatMappedTags = posts.flatMap(data => data.tag)
-
+export const Index = ({ posts }: iPostsType): JSX.Element => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center m-8">
+      <div className='flex flex-col items-center justify-center m-4 sm:m-8'>
         <Introduce />
-        <div className='flex container px-20 flex-wrap w-fit'>
-          {flatMappedTags.map(subject => {
-            return <Tag subject={subject} />
-          })}
+        <div className='flex container flex-wrap w-fit m-4'>
+          <Tags posts={posts} />
+        </div>
+        <div className='flex flex-col container'>
+          <PostInfos posts={posts}/>
         </div>
       </div>
     </>
@@ -37,7 +26,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { posts },
-  };
-};
+  }
+}
 
-export default Index;
+export default Index
