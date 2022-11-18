@@ -1,13 +1,26 @@
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
+import path from 'path';
+import { ParsedUrlQuery } from 'querystring';
 import { iPostType } from '../../type/type'
-import { getAllPosts } from '../api/staticdata'
+import { addParamsPaths, getPostBySlug } from '../api/getStaticData'
 
-type PostType = {
-  post: Array<iPostType>
+type PostPageType = {
+  data: {
+    [key: string]: any;
+  }
+  content: iPostType;
+};
+
+interface Params extends ParsedUrlQuery {
+  slug: string,
 }
 
-export default function Posts({ post }: PostType): JSX.Element {
-  const { title, date, description, tag } = post[0]
+type PropType = {
+  params: Params
+}
+
+export default function Post({ content, data }: PostPageType): JSX.Element {
+  const { title, date, description, tag } = content;
 
   return (
     <div className='flex flex-col items-center justify-center m-10'>
@@ -16,20 +29,20 @@ export default function Posts({ post }: PostType): JSX.Element {
   )
 }
 
-export const getStaticPaths = async () => {
-  const posts = await getAllPosts()
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await addParamsPaths()
 
   return {
-    paths: posts.map(post => ({ params: { slug: post.title }})),
+    paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const posts = await getAllPosts()
-  const post = posts.filter(post => post.title === (params && params.slug))
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { params } = context as PropType
+  const { data, content } = await getPostBySlug(`${params.slug}.mdx`)
 
   return {
-    props: { post },
+    props: { content, data },
   }
 }
