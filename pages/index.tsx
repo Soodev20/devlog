@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Introduce from '../components/Introduce'
 import Tags from '../components/Tags'
-import { getAllPosts } from './api/getStaticData'
+import { getAllPostsMetaData } from './api/getStaticData'
 import { iPostsType } from '../type/type'
 import PostInfos from '../components/PostInfos'
 
@@ -22,10 +22,11 @@ export const Index = ({ posts }: iPostsType): JSX.Element => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPostsMetaData()
+  const sortedPosts = posts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
 
   return {
-    props: { posts },
+    props: { posts: sortedPosts },
   }
 }
 
