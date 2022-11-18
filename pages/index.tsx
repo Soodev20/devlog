@@ -5,7 +5,7 @@ import { getAllPostsMetaData } from './api/getStaticData'
 import { iPostsType } from '../type/type'
 import PostInfos from '../components/PostInfos'
 
-export const Index = ({ posts }: iPostsType): JSX.Element => {
+export const IndexPage = ({ posts }: iPostsType): JSX.Element => {
   return (
     <>
       <div className='flex flex-col items-center justify-center m-4 sm:m-8'>
@@ -30,4 +30,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default Index
+export default IndexPage
