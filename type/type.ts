@@ -1,6 +1,7 @@
 export interface iPostType {
+  key: string;
   title: string;
-  date?: string;
+  date: string;
   description?: string;
   tag: Array<string>;
 }
