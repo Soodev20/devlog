@@ -1,5 +1,5 @@
 export interface iPostType {
-  key: string;
+  url: string;
   title: string;
   date: string;
   description?: string;
