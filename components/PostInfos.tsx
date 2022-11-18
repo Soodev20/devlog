@@ -4,9 +4,9 @@ import PostInfo from "./PostInfo"
 export default function PostInfos ({ posts }: iPostsType) {
   return (
     <>
-      {posts.map(post => {
+      {posts.map((post, index) => {
         return (
-          <PostInfo post={post} />
+          <PostInfo key={`post-${index}`} post={post} />
         )
       })}
     </>

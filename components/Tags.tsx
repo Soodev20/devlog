@@ -15,7 +15,11 @@ export default function Tags ({ posts }: iPostsType) {
     <>
       {Object.keys(sortedTags).map(key => {
         return (
-          <Tag subject={key} frequency={sortedTags[key]}/>
+          <Tag
+            key={key}
+            subject={key}
+            frequency={sortedTags[key]}
+          />
         )
       })}
     </>
