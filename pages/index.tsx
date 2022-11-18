@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Introduce from '../components/Introduce'
 import Tags from '../components/Tags'
-import { getAllPosts } from './api/staticdata'
+import { getAllPosts } from './api/getStaticData'
 import { iPostsType } from '../type/type'
 import PostInfos from '../components/PostInfos'
 
