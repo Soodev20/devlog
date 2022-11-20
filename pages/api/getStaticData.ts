@@ -9,6 +9,7 @@ export const getAllPostsMetaData = async () => {
   const postsMetaData = await Promise.all(
     slugs.map(async(slug) => {
       const { data } = await getPostBySlug(slug)
+
       return data
     })
   )
