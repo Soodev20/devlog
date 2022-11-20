@@ -20,7 +20,7 @@ export default function Menu () {
       {MENU_LIST.map(info => {
         return(
         <Link
-          className={`px-4 hover:text-main-blue dark:text-white ${checkNowPath(info.path) && 'border-b-2 border-b-main-orange'}`}
+          className={`px-4 hover:text-main-blue dark:text-white border-b-2 ${checkNowPath(info.path) ? 'border-b-main-orange' : 'border-b-transparent'}`}
           key={info.title}
           href={info.path}
         >
