@@ -1,14 +1,14 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
-import path from 'path';
-import { ParsedUrlQuery } from 'querystring';
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { ParsedUrlQuery } from 'querystring'
 import { iPostType } from '../../type/type'
 import { addParamsPaths, getPostBySlug } from '../api/getStaticData'
 
 type PostPageType = {
-  data: {
-    [key: string]: any;
-  }
-  content: iPostType;
+  data: iPostType;
+  source: MDXRemoteSerializeResult;
 };
 
 interface Params extends ParsedUrlQuery {
@@ -19,12 +19,13 @@ type PropType = {
   params: Params
 }
 
-export default function Post({ content, data }: PostPageType): JSX.Element {
-  const { title, date, description, tag } = content;
+const components = { SyntaxHighlighter }
+
+const PostPage = ({ data, source }: PostPageType): JSX.Element => {
 
   return (
     <div className='flex flex-col items-center justify-center m-10'>
-      <p>This is posts page.</p>
+      <MDXRemote {...source} components={components} />
     </div>
   )
 }
@@ -41,8 +42,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context as PropType
   const { data, content } = await getPostBySlug(`${params.slug}.mdx`)
+  const mdxSource = await serialize(content, { scope: data })
 
   return {
-    props: { content, data },
+    props: {
+      data,
+      source: mdxSource,
+    },
   }
 }
+
+export default PostPage
