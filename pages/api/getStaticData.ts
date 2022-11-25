@@ -22,7 +22,7 @@ export const addParamsPaths= async () => {
   const filteredPaths = await Promise.all(
     paths
       .map(path => path.replace(/\.mdx$/, ''))
-      .map((slug) => ({ params: { slug } }))
+      .map(slug => ({ params: { slug } }))
   )
   return filteredPaths
 }
@@ -33,4 +33,14 @@ export const getPostBySlug = async (slug: string) => {
   const { data, content } = matter(fileContent)
 
   return { data, content }
+}
+
+export const getTagsParamsPaths = async () => {
+  const allMetaData = await getAllPostsMetaData()
+  const flatMappedTags = await Promise.all(
+    allMetaData.flatMap(metaData => metaData.tag)
+  )
+  const filterDuplicateTags = Array.from(new Set(flatMappedTags))
+
+  return filterDuplicateTags.map(slug => ({ params: { slug } }))
 }
