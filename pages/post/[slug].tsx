@@ -22,7 +22,6 @@ type PropType = {
 const components = { SyntaxHighlighter }
 
 const PostPage = ({ data, source }: PostPageType): JSX.Element => {
-
   return (
     <div className='flex flex-col items-center justify-center m-10'>
       <MDXRemote {...source} components={components} />
@@ -36,8 +35,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths,
     fallback: false,
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context as PropType
