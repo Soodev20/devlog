@@ -1,4 +1,4 @@
-import { iProjectType } from "../../type/type"
+import { iProjectType } from '../../type/type'
 
 export const PROJECT_LIST: Array<iProjectType> = [
   {

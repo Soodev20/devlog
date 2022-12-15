@@ -1,5 +1,5 @@
-import ProjectCard from "../components/ProjectCard"
-import { PROJECT_LIST } from "../data/common/projectInfo"
+import ProjectCard from '../components/ProjectCard'
+import { PROJECT_LIST } from '../data/common/projectInfo'
 
 const ProjectsPage = () => {
   return (
